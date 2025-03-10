@@ -12,6 +12,8 @@ services:
       - ./acme.json:/acme.json
     networks:
       - traefik_net
+    environment:
+      - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL=${EMAIL}
 
 networks:
   traefik_net:
