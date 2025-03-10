@@ -1,0 +1,17 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"
+
+[api]
+  dashboard = true
+
+[providers.docker]
+  exposedByDefault = false
+
+[certificatesResolvers.letsencrypt.acme]
+  email = ${EMAIL}
+  storage = "acme.json"
+  [certificatesResolvers.letsencrypt.acme.httpChallenge]
+    entryPoint = "web"
