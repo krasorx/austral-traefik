@@ -12,8 +12,19 @@ services:
       - ./opt/acme.json:/acme.json
     networks:
       - traefik_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_SUBDOMAIN}`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH_USERS}"
+      - "traefik.http.routers.traefik.middlewares=auth"
     environment:
       - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL=${EMAIL}
+    env_file:
+      - .env
 
 networks:
   traefik_net:
