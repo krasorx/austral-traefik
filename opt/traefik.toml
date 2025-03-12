@@ -1,14 +1,26 @@
 [entryPoints]
   [entryPoints.web]
     address = ":80"
+    [entryPoints.web.http.redirections.entryPoint]
+      to = "websecure"
+      scheme = "https"
   [entryPoints.websecure]
     address = ":443"
+
+
+[log]
+  level = "DEBUG"
+
+[accessLog]
+  filePath = "/traefik.log"
+  format = "common"
 
 [api]
   dashboard = true
 
 [providers.docker]
   exposedByDefault = false
+  network = "traefik_net"
 
 [certificatesResolvers.letsencrypt.acme]
   storage = "acme.json"
