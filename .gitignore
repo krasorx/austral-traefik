@@ -1,3 +1,4 @@
 .env
 acme.json
 /opt/acme.json
+opt/acme.json
