@@ -6,7 +6,8 @@
       scheme = "https"
   [entryPoints.websecure]
     address = ":443"
-
+  [entryPoints.video]
+    address = ":10000/udp"
 
 [log]
   level = "DEBUG"
