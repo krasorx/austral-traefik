@@ -27,3 +27,14 @@
   storage = "acme.json"
   [certificatesResolvers.letsencrypt.acme.httpChallenge]
     entryPoint = "web"
+
+[metrics]
+  [metrics.prometheus]
+    # Opcional pero muy recomendado: agrega labels detallados para filtrar mejor en Grafana
+    addEntryPointsLabels = true
+    addRoutersLabels     = true
+    addServicesLabels    = true
+    # Opcional: buckets personalizados para histogramas de latencia (en segundos)
+    buckets = [0.1, 0.3, 1.2, 5.0]
+    # Si quieres métricas de recursos internos (ping, api@internal, etc.)
+    # addInternals = true   # por defecto false
