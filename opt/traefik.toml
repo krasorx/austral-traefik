@@ -10,7 +10,7 @@
     address = ":10000/udp"
 
 [log]
-  level = "DEBUG"
+  level = "INFO"
 
 [accessLog]
   filePath = "/traefik.log"
